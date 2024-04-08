@@ -1,0 +1,423 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+
+*,
+*:before,
+*:after{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+::-webkit-calendar-picker-indicator{
+  background-color: #ffffff;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+body{
+  font-family: Helvetica;
+  -webkit-font-smoothing: antialiased;
+  background: rgba( 71, 147, 227, 1);
+}
+
+img{
+  max-width: 100%;
+}
+
+section{
+  background: url(/Transport-Booking/images/bus.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: all .5s;
+  overflow: auto;
+}
+
+h2{
+  text-align: center;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+  padding: 30px 0;
+}
+
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: #042331;
+  transition: all .5s ease;
+  overflow: auto;
+  z-index: 1;
+}
+.sidebar header {
+  font-size: 22px;
+  color: white;
+  line-height: 70px;
+  text-align: center;
+  background: #063146;
+  user-select: none;
+}
+.sidebar ul a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255,255,255,.1);
+  transition: .4s;
+}
+a:link, a:visited{
+  padding: 6px 15px;
+  text-align: center;
+  border: 2px solid green;
+}
+
+a:hover, a:active{
+  background-color: green;
+}
+ul li:hover a{
+  padding-left: 50px;
+}
+.sidebar ul a i{
+  margin-right: 16px;
+}
+#check{
+  display: none;
+}
+label #btn,label #cancel{
+  position: absolute;
+  background: #042331;
+  border-radius: 3px;
+  cursor: pointer;
+}
+label #btn{
+  left: 40px;
+  top: 25px;
+  font-size: 35px;
+  color: white;
+  padding: 6px 12px;
+  transition: all .5s;
+}
+label #cancel{
+  z-index: 1111;
+  left: -200px;
+  top: 17px;
+  font-size: 30px;
+  color: #0a5275;
+  padding: 4px 9px;
+  transition: all .5s ease;
+}
+#check:checked ~ .sidebar{
+  left: 0;
+}
+#check:checked ~ label #btn{
+  left: 250px;
+  opacity: 0;
+  pointer-events: none;
+}
+#check:checked ~ label #cancel{
+  left: 200px;
+}
+#check:checked ~ .sect{
+  margin-left: 250px;
+}
+/*Javascript active class on sidebar*/
+.active{
+  background-color: green;
+  color: white;
+}
+
+/* Table Styles */
+
+.table-wrapper{
+  margin: 10px 70px 70px;
+  box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+}
+
+.fl-table {
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: normal;
+  border: none;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  background-color: white;
+}
+
+.fl-table td, .fl-table th {
+  text-align: center;
+  padding: 8px;
+}
+
+.fl-table td {
+  border-right: 1px solid #f8f8f8;
+  font-size: 12px;
+}
+
+.fl-table thead th {
+  color: #ffffff;
+  background: #4FC3A1;
+}
+
+
+.fl-table thead th:nth-child(odd) {
+  color: #ffffff;
+  background: #324960;
+}
+
+.fl-table tr:nth-child(even) {
+  background: #F8F8F8;
+}
+
+/* SCROLL ON TEXT OVERFLOW, FOR PICKUP LOCATION, DESTINATION AND PURPOSE */
+
+.fl-table .table_scroll{
+  max-width: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.fl-table .table_scroll:hover{
+  overflow: scroll;
+}
+
+/* USER REQUEST FORM */
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-container{
+  opacity: .9;
+  margin-top: 50px;
+  flex-basis: 80%;
+  background: #063146;
+  box-shadow: 3px 3px 5px black;
+  padding: 10px;
+  max-width: 760px;
+  
+}
+
+.input-labels{
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+  color: whitesmoke;
+}
+
+.user-form-flex{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.user-form-flex div{
+  width: 100%;
+  flex: 1;
+  flex-basis: 50%;
+}
+
+.input-date-timeout, .input-time-back, .input-vehicle-names, .input-num-passengers, .input-location, .input-destination, .input-purpose, .admin-action, .admin-comment{
+  width: 100%;
+  background-color: aliceblue;
+  border: none;
+  border-radius: 4px;
+  padding: 16px 20px;
+}
+
+.input-purpose, .admin-comment{
+  width: 100%;
+  height: 150px;
+  box-sizing: border-box;
+  font-size: 16px;
+  resize: none;
+}
+/*user submit and admin submit*/
+.submit-request, .submit-request-response{
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+
+/*ADMIN VIEW BUTTONS */
+.view_button:link, .view_button:visited {
+  color: black;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: 2px solid green;
+}
+
+.view_button:hover, .view_button:active {
+  background-color: green;
+  color: white;
+}
+
+/* ADMIN VIEW INDIVIDUAL REQUEST */
+
+.admin-view-request-container-flex{
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-view-request-container-flex .row-item {
+  margin-bottom: 10px;
+  color:white;
+  word-break: break-all;
+}
+
+.admin_view_label {
+  font-weight: bold;
+}
+
+/*admin user page*/
+
+.admin-user-page-btn{
+  background-color: #04AA6D;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 3px 20px;
+}
+.admin-user-page-btn-decline{
+  background-color: red;
+  margin-left: 4px;
+}
+.admin-user-page-btn:hover{
+  outline: black 2px solid;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+
+/* Sidebar margin 0 */
+#check:checked ~ section{
+  margin-left: 0px;
+}
+/*User*/
+.form-container{
+  margin-top: 100px;
+  flex-basis: 80%;
+  border: 1px solid black; 
+  margin-bottom: 50px;  
+}
+/*Admin*/
+.form-container-admin{
+  margin-top: 20px;
+}
+.admin-user-page-btn{
+  padding: 0;
+}
+}
+
+
+@media (max-width: 767px) {
+h2{
+  margin-top: 80px;
+}
+/*Table*/
+.table-wrapper{
+  margin: 20px;
+  box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+  min-height: 260px;
+}
+.fl-table {
+  display: block;
+  width: 100%;
+}
+.table-wrapper:before{
+  content: "Scroll horizontally >";
+  display: block;
+  text-align: right;
+  font-size: 11px;
+  color: white;
+  padding: 0 0 10px;
+}
+.fl-table thead, .fl-table tbody, .fl-table thead th {
+  display: block;
+}
+.fl-table thead th:last-child{
+  border-bottom: none;
+}
+.fl-table thead {
+  float: left;
+}
+.fl-table tbody {
+  width: auto;
+  /* position: relative; */
+  overflow-x: auto;
+  /* allows the table to scroll as more table data comes from the database */
+}
+.fl-table td, .fl-table th {
+  padding: 20px .625em .625em .625em;
+  height: 60px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  width: 120px;
+  font-size: 13px;
+}
+.fl-table thead th {
+  text-align: left;
+  border-bottom: 1px solid #f7f7f9;
+  white-space: normal;
+}
+.fl-table tbody tr {
+  display: table-cell;
+}
+.fl-table tbody tr:nth-child(odd) {
+  background: none;
+}
+.fl-table tr:nth-child(even) {
+  background: transparent;
+}
+.fl-table tr td:nth-child(odd) {
+  background: #F8F8F8;
+  border-right: 1px solid #E6E4E4;
+}
+.fl-table tr td:nth-child(even) {
+  border-right: 1px solid #E6E4E4;
+}
+.fl-table tbody td {
+  display: block;
+  text-align: center;
+}
+.fl-table .table_scroll{
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+}
+
+
+
+
+
+
+
+  
+
+
+
+
+  
